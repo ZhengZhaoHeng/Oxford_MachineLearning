@@ -154,7 +154,6 @@ feval = function(x_new)
    -- evaluate the loss function and its derivative wrt x, for that sample
    local loss_x = criterion:forward(model:forward(inputs), target)
    model:backward(inputs, criterion:backward(model.output, target))
-
    -- return loss(x) and dloss/dx
    return loss_x, dl_dx
 end
