@@ -23,7 +23,7 @@ torch.manualSeed(1)    -- fix random seed so program runs the same every time
 local opt = {}         -- these options are used throughout
 opt.optimization = 'sgd'
 opt.batch_size = 100
-opt.train_size = 0  -- set to 0 or 60000 to use all 60000 training data
+opt.train_size = 10 -- set to 0 or 60000 to use all 60000 training data
 opt.test_size = 0      -- 0 means load all data
 opt.epochs = 2        -- **approximate** number of passes through the training data (see below for the `iterations` variable, which is calculated from this)
 
@@ -93,6 +93,8 @@ end
 local train = load_dataset('train', opt.train_size)
 local test = load_dataset('test', opt.test_size)
 
+print (train)
+
 ------------------------------------------------------------------------------
 -- MODEL
 ------------------------------------------------------------------------------
@@ -103,6 +105,7 @@ local n_outputs = train.labels:max()    -- highest label = # of classes
 
 print(train.labels:max())
 print(train.labels:min())
+print(train)
 
 local lin_layer = nn.Linear(n_inputs, n_outputs)
 local softmax = nn.LogSoftMax() 
